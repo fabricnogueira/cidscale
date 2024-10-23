@@ -53,14 +53,15 @@ module.exports = function(api) {
           useBuiltIns: true
         }
       ],
+      // Substituindo plugins obsoletos pelas versões transformadas
       [
-        '@babel/plugin-proposal-private-methods',
+        '@babel/plugin-transform-private-methods',
         {
           loose: true
         }
       ],
       [
-        '@babel/plugin-proposal-private-property-in-object',
+        '@babel/plugin-transform-private-property-in-object',
         {
           loose: true
         }
