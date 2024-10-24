@@ -14,31 +14,28 @@ class PrincipalController < ApplicationController
   end
 
   private
-
-  def categorizar_visao(valor)
-    # Converte o valor em uma fração numérica
-    partes = valor.split('/')
-    if partes.length == 2
-      numerador = partes[0].to_f
-      denominador = partes[1].to_f
-
-      if denominador == 0
-        return "Valor inválido"
-      end
-
-      fracao = numerador / denominador
-
-      if fracao >= (6.0 / 60)
-        "Categoria 1 - Deficiência visual moderada"
-      elsif fracao >= (3.0 / 60)
-        "Categoria 2 - Deficiência visual severa"
-      elsif fracao >= (1.0 / 60)
-        "Categoria 3 - Cegueira"
-      else
-        "Categoria 4 - Cegueira"
-      end
+  def categorizar_visao(denominador)
+    numerador = 20.0
+  
+    if denominador.to_f == 0
+      return "Valor inválido"
+    end
+  
+    fracao = numerador / denominador.to_f
+  
+    # Classificação com base na tabela 20/1200
+    if fracao >= (20.0 / 40)
+      "Categoria 0 - Sem deficiência visual"
+    elsif fracao >= (20.0 / 70)
+      "Categoria 1 - Deficiência visual leve"
+    elsif fracao >= (20.0 / 200)
+      "Categoria 2 - Deficiência visual moderada"
+    elsif fracao >= (20.0 / 400)
+      "Categoria 3 - Deficiência visual grave"
+    elsif fracao >= (20.0 / 1200)
+      "Categoria 4 - Cegueira"
     else
-      "Valor inválido"
+      "Categoria 5 - Cegueira"
     end
   end
 end
