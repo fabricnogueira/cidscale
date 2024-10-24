@@ -9,6 +9,8 @@ gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
 gem 'sqlite3', '~> 1.4'
 # Use pg as the database for Active Record
 gem 'pg', '~> 1.2'
+# Use dotenv-rails to load environment variables from .env file
+gem 'dotenv-rails', groups: [:development, :test]
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
