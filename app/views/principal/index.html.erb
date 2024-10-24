@@ -2,12 +2,12 @@
 
 <%= form_with url: calcular_path, method: :post do %>
   <div>
-    <%= label_tag :olho_esquerdo, "Olho Esquerdo (ex: 6/60)" %>
-    <%= text_field_tag :olho_esquerdo %>
+    <%= label_tag :olho_esquerdo, "Olho Esquerdo (20/)" %>
+    <%= text_field_tag :olho_esquerdo, "", placeholder: "Insira o denominador" %>
   </div>
   <div>
-    <%= label_tag :olho_direito, "Olho Direito (ex: 6/60)" %>
-    <%= text_field_tag :olho_direito %>
+    <%= label_tag :olho_direito, "Olho Direito (20/)" %>
+    <%= text_field_tag :olho_direito, "", placeholder: "Insira o denominador" %>
   </div>
   <div>
     <%= submit_tag "Calcular" %>
