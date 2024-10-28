@@ -1,15 +1,21 @@
-<h1>Avaliação da Acuidade Visual</h1>
+<h1 class="text-center my-4">Avaliação da Acuidade Visual</h1>
 
-<%= form_with url: calcular_path, method: :post do %>
-  <div>
-    <%= label_tag :olho_esquerdo, "Olho Esquerdo (20/)" %>
-    <%= text_field_tag :olho_esquerdo, "", placeholder: "Insira o denominador" %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with url: calcular_path, method: :post, class: "form-inline d-flex align-items-center justify-content-center" do %>
+        <div class="mb-3 mx-2">
+          <%= label_tag :olho_esquerdo, "Olho Esquerdo (20/)", class: "form-label" %>
+          <%= text_field_tag :olho_esquerdo, "", placeholder: "Insira o denominador", class: "form-control" %>
+        </div>
+        <div class="mb-3 mx-2">
+          <%= label_tag :olho_direito, "Olho Direito (20/)", class: "form-label" %>
+          <%= text_field_tag :olho_direito, "", placeholder: "Insira o denominador", class: "form-control" %>
+        </div>
+        <div class="mx-2">
+          <%= submit_tag "Calcular", class: "btn btn-success btn-outline-light" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= label_tag :olho_direito, "Olho Direito (20/)" %>
-    <%= text_field_tag :olho_direito, "", placeholder: "Insira o denominador" %>
-  </div>
-  <div>
-    <%= submit_tag "Calcular" %>
-  </div>
-<% end %>
+</div>
