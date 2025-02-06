@@ -6,11 +6,11 @@
       <%= form_with url: calcular_path, method: :post, class: "form-inline d-flex align-items-center justify-content-center" do %>
         <div class="mb-3 mx-2">
           <%= label_tag :olho_esquerdo, "Olho Esquerdo (20/)", class: "form-label" %>
-          <%= text_field_tag :olho_esquerdo, "", placeholder: "Insira o denominador", class: "form-control" %>
+          <%= text_field_tag :olho_esquerdo, "", placeholder: "Ex: 200, 400, PL, NPL", class: "form-control" %>
         </div>
         <div class="mb-3 mx-2">
           <%= label_tag :olho_direito, "Olho Direito (20/)", class: "form-label" %>
-          <%= text_field_tag :olho_direito, "", placeholder: "Insira o denominador", class: "form-control" %>
+          <%= text_field_tag :olho_direito, "", placeholder: "Ex: 200, 400, PL, NPL", class: "form-control" %>
         </div>
         <div class="mx-2">
           <%= submit_tag "Calcular", class: "btn btn-success btn-outline-light" %>
