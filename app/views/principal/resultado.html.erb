@@ -1,6 +1,16 @@
-<h1>Resultados</h1>
+<h1 class="text-center my-4">Resultado da Avaliação</h1>
 
-<p><strong>Olho Esquerdo:</strong> <%= @olho_esquerdo %> - <%= @categoria_esquerdo %></p>
-<p><strong>Olho Direito:</strong> <%= @olho_direito %> - <%= @categoria_direito %></p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <p><strong>Olho Esquerdo:</strong> <%= @olho_esquerdo %> - <%= @categoria_esquerdo %> (CID: <%= @cid_esquerdo %>)</p>
+      <p><strong>Olho Direito:</strong> <%= @olho_direito %> - <%= @categoria_direito %> (CID: <%= @cid_direito %>)</p>
 
-<%= link_to "Voltar", root_path %>
+      <hr>
+
+      <p><strong>Diagnóstico Final:</strong> <%= @descricao_cid %></p>
+
+      <%= link_to "Voltar", root_path, class: "btn btn-primary mt-3" %>
+    </div>
+  </div>
+</div>
