@@ -3,8 +3,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8 text-center">
-      <p><strong>Olho Esquerdo:</strong> <%= @olho_esquerdo %> - <%= @categoria_esquerdo %> (CID: <%= @cid_esquerdo %>)</p>
-      <p><strong>Olho Direito:</strong> <%= @olho_direito %> - <%= @categoria_direito %> (CID: <%= @cid_direito %>)</p>
+      <p><strong>Olho Esquerdo:</strong> <%= @olho_esquerdo.presence || (@pl_esquerdo ? "PL" : @npl_esquerdo ? "NPL" : @indeterminado_esquerdo ? "Indeterminado" : "") %> - <%= @categoria_esquerdo %> (CID: <%= @cid_esquerdo %>)</p>
+
+      <p><strong>Olho Direito:</strong> <%= @olho_direito.presence || (@pl_direito ? "PL" : @npl_direito ? "NPL" : @indeterminado_direito ? "Indeterminado" : "") %> - <%= @categoria_direito %> (CID: <%= @cid_direito %>)</p>
 
       <hr>
 

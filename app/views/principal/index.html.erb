@@ -3,18 +3,54 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <%= form_with url: calcular_path, method: :post, class: "form-inline d-flex align-items-center justify-content-center" do %>
-        <div class="mb-3 mx-2">
+      <%= form_with url: calcular_path, method: :post, class: "form-inline d-flex flex-column align-items-center" do %>
+        
+        <div class="mb-3 w-100">
           <%= label_tag :olho_esquerdo, "Olho Esquerdo (20/)", class: "form-label" %>
-          <%= text_field_tag :olho_esquerdo, "", placeholder: "Ex: 200, 400, PL, NPL", class: "form-control" %>
+          <%= text_field_tag :olho_esquerdo, "", placeholder: "Ex: 60, 200, 400", class: "form-control" %>
         </div>
-        <div class="mb-3 mx-2">
+
+        <div class="mb-3 w-100">
           <%= label_tag :olho_direito, "Olho Direito (20/)", class: "form-label" %>
-          <%= text_field_tag :olho_direito, "", placeholder: "Ex: 200, 400, PL, NPL", class: "form-control" %>
+          <%= text_field_tag :olho_direito, "", placeholder: "Ex: 60, 200, 400", class: "form-control" %>
         </div>
-        <div class="mx-2">
+
+        <div class="form-check w-100">
+          <%= check_box_tag :pl_esquerdo, "PL", false, class: "form-check-input" %>
+          <%= label_tag :pl_esquerdo, "Percepção de Luz no Olho Esquerdo", class: "form-check-label" %>
+        </div>
+
+        <div class="form-check w-100">
+          <%= check_box_tag :npl_esquerdo, "NPL", false, class: "form-check-input" %>
+          <%= label_tag :npl_esquerdo, "Sem Percepção de Luz no Olho Esquerdo", class: "form-check-label" %>
+        </div>
+
+        <div class="form-check w-100">
+          <%= check_box_tag :indeterminado_esquerdo, "Indeterminado", false, class: "form-check-input" %>
+          <%= label_tag :indeterminado_esquerdo, "Indeterminado/Não especificado no Olho Esquerdo", class: "form-check-label" %>
+        </div>
+
+        <hr>
+
+        <div class="form-check w-100">
+          <%= check_box_tag :pl_direito, "PL", false, class: "form-check-input" %>
+          <%= label_tag :pl_direito, "Percepção de Luz no Olho Direito", class: "form-check-label" %>
+        </div>
+
+        <div class="form-check w-100">
+          <%= check_box_tag :npl_direito, "NPL", false, class: "form-check-input" %>
+          <%= label_tag :npl_direito, "Sem Percepção de Luz no Olho Direito", class: "form-check-label" %>
+        </div>
+
+        <div class="form-check w-100">
+          <%= check_box_tag :indeterminado_direito, "Indeterminado", false, class: "form-check-input" %>
+          <%= label_tag :indeterminado_direito, "Indeterminado/Não especificado no Olho Direito", class: "form-check-label" %>
+        </div>
+
+        <div class="mt-3">
           <%= submit_tag "Calcular", class: "btn btn-success btn-outline-light" %>
         </div>
+
       <% end %>
     </div>
   </div>
