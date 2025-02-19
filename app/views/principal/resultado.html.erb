@@ -1,17 +1,31 @@
-<h1 class="text-center my-4">Resultado da Avaliação</h1>
+<h1 class="text-center text-2xl font-bold my-6">Resultado da Avaliação</h1>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8 text-center">
-      <p><strong>Olho Esquerdo:</strong> <%= @olho_esquerdo.presence || (@pl_esquerdo ? "PL" : @npl_esquerdo ? "NPL" : @indeterminado_esquerdo ? "Indeterminado" : "") %> - <%= @categoria_esquerdo %> (CID: <%= @cid_esquerdo %>)</p>
+<div class="container mx-auto px-4">
+  <div class="flex flex-col md:flex-row gap-6">
 
-      <p><strong>Olho Direito:</strong> <%= @olho_direito.presence || (@pl_direito ? "PL" : @npl_direito ? "NPL" : @indeterminado_direito ? "Indeterminado" : "") %> - <%= @categoria_direito %> (CID: <%= @cid_direito %>)</p>
-
-      <hr>
-
-      <p><strong>Diagnóstico Final:</strong> <%= @descricao_cid %></p>
-
-      <%= link_to "Voltar", root_path, class: "btn btn-primary mt-3" %>
+    <!-- Resultado Olho Esquerdo -->
+    <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-xl font-semibold text-center mb-4">Olho Esquerdo</h2>
+      <p class="text-gray-700"><strong>Entrada:</strong> <%= @olho_esquerdo.presence || (@pl_esquerdo ? "PL" : @npl_esquerdo ? "NPL" : @indeterminado_esquerdo ? "Indeterminado" : "-") %></p>
+      <p class="text-gray-700"><strong>Categoria:</strong> <%= @categoria_esquerdo %></p>
+      <p class="text-gray-700"><strong>CID:</strong> <%= @cid_esquerdo %></p>
     </div>
+
+    <!-- Resultado Olho Direito -->
+    <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-xl font-semibold text-center mb-4">Olho Direito</h2>
+      <p class="text-gray-700"><strong>Entrada:</strong> <%= @olho_direito.presence || (@pl_direito ? "PL" : @npl_direito ? "NPL" : @indeterminado_direito ? "Indeterminado" : "-") %></p>
+      <p class="text-gray-700"><strong>Categoria:</strong> <%= @categoria_direito %></p>
+      <p class="text-gray-700"><strong>CID:</strong> <%= @cid_direito %></p>
+    </div>
+  </div>
+
+  <!-- Diagnóstico Final -->
+  <div class="bg-gray-100 shadow-md rounded-lg p-6 text-center mt-6">
+    <p class="text-lg font-semibold"><strong>Diagnóstico Final:</strong> <%= @descricao_cid %></p>
+  </div>
+
+  <div class="flex justify-center mt-4">
+    <%= link_to "Voltar", root_path, class: "bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-200" %>
   </div>
 </div>
