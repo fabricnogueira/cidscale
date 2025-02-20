@@ -1,55 +1,72 @@
-<h1 class="text-center text-2xl font-bold my-6">Avaliação da Acuidade Visual</h1>
+<h1 class="text-center display-4 my-5 font-weight-bold">Avaliação da Acuidade Visual</h1>
 
-<div class="container mx-auto px-4">
-  <%= form_with url: calcular_path, method: :post, class: "space-y-6" do %>
-    <div class="flex flex-col md:flex-row gap-12">
+<div class="container">
+  <%= form_with url: calcular_path, method: :post, class: "row g-4" do %>
 
-      <!-- Coluna Olho Esquerdo -->
-      <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-center mb-4">Olho Esquerdo</h2>
-
-        <div class="mb-4">
-          <%= label_tag :olho_esquerdo, "Acuidade Visual (20/)", class: "block font-medium text-gray-700" %>
-          <%= text_field_tag :olho_esquerdo, "", placeholder: "Ex: 60, 200, 400", class: "w-full mt-2 px-3 py-2 border rounded-lg focus:ring focus:border-blue-500" %>
+    <!-- Coluna Olho Esquerdo -->
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-header text-center bg-primary text-white">
+          <h2>Olho Esquerdo</h2>
         </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <%= label_tag :olho_esquerdo, "Acuidade Visual (20/)", class: "form-label" %>
+            <%= text_field_tag :olho_esquerdo, "", placeholder: "Ex: 60, 200, 400", class: "form-control" %>
+          </div>
 
-        <div class="space-y-2">
-          <%= check_box_tag :pl_esquerdo, "PL", false, class: "mr-2" %>
-          <%= label_tag :pl_esquerdo, "Percepção de Luz", class: "font-medium text-gray-600" %><br>
+          <div class="form-check">
+            <%= check_box_tag :pl_esquerdo, "PL", false, class: "form-check-input" %>
+            <%= label_tag :pl_esquerdo, "Percepção de Luz", class: "form-check-label" %>
+          </div>
 
-          <%= check_box_tag :npl_esquerdo, "NPL", false, class: "mr-2" %>
-          <%= label_tag :npl_esquerdo, "Sem Percepção de Luz", class: "font-medium text-gray-600" %><br>
+          <div class="form-check">
+            <%= check_box_tag :npl_esquerdo, "NPL", false, class: "form-check-input" %>
+            <%= label_tag :npl_esquerdo, "Sem Percepção de Luz", class: "form-check-label" %>
+          </div>
 
-          <%= check_box_tag :indeterminado_esquerdo, "Indeterminado", false, class: "mr-2" %>
-          <%= label_tag :indeterminado_esquerdo, "Indeterminado/Não especificado", class: "font-medium text-gray-600" %>
-        </div>
-      </div>
-
-      <!-- Coluna Olho Direito -->
-      <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-center mb-4">Olho Direito</h2>
-
-        <div class="mb-4">
-          <%= label_tag :olho_direito, "Acuidade Visual (20/)", class: "block font-medium text-gray-700" %>
-          <%= text_field_tag :olho_direito, "", placeholder: "Ex: 60, 200, 400", class: "w-full mt-2 px-3 py-2 border rounded-lg focus:ring focus:border-blue-500" %>
-        </div>
-
-        <div class="space-y-2">
-          <%= check_box_tag :pl_direito, "PL", false, class: "mr-2" %>
-          <%= label_tag :pl_direito, "Percepção de Luz", class: "font-medium text-gray-600" %><br>
-
-          <%= check_box_tag :npl_direito, "NPL", false, class: "mr-2" %>
-          <%= label_tag :npl_direito, "Sem Percepção de Luz", class: "font-medium text-gray-600" %><br>
-
-          <%= check_box_tag :indeterminado_direito, "Indeterminado", false, class: "mr-2" %>
-          <%= label_tag :indeterminado_direito, "Indeterminado/Não especificado", class: "font-medium text-gray-600" %>
+          <div class="form-check">
+            <%= check_box_tag :indeterminado_esquerdo, "Indeterminado", false, class: "form-check-input" %>
+            <%= label_tag :indeterminado_esquerdo, "Indeterminado/Não especificado", class: "form-check-label" %>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Botão Calcular (Agora funcionando) -->
-    <div class="flex justify-center">
-      <%= submit_tag "Calcular", class: "bg-green-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-green-600 transition duration-200" %>
+    <!-- Coluna Olho Direito -->
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-header text-center bg-primary text-white">
+          <h2>Olho Direito</h2>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <%= label_tag :olho_direito, "Acuidade Visual (20/)", class: "form-label" %>
+            <%= text_field_tag :olho_direito, "", placeholder: "Ex: 60, 200, 400", class: "form-control" %>
+          </div>
+
+          <div class="form-check">
+            <%= check_box_tag :pl_direito, "PL", false, class: "form-check-input" %>
+            <%= label_tag :pl_direito, "Percepção de Luz", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
+            <%= check_box_tag :npl_direito, "NPL", false, class: "form-check-input" %>
+            <%= label_tag :npl_direito, "Sem Percepção de Luz", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
+            <%= check_box_tag :indeterminado_direito, "Indeterminado", false, class: "form-check-input" %>
+            <%= label_tag :indeterminado_direito, "Indeterminado/Não especificado", class: "form-check-label" %>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Botão Calcular -->
+    <div class="col-12 text-center my-4">
+      <%= submit_tag "Calcular", class: "btn btn-primary btn-lg px-5 py-2" %>
+    </div>
+    
   <% end %>
 </div>

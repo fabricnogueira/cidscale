@@ -1,31 +1,47 @@
-<h1 class="text-center text-2xl font-bold my-6">Resultado da Avaliação</h1>
+<h1 class="text-center display-4 my-5 font-weight-bold">Resultado da Avaliação</h1>
 
-<div class="container mx-auto px-4">
-  <div class="flex flex-col md:flex-row gap-6">
+<div class="container">
+  <div class="row g-4">
 
     <!-- Resultado Olho Esquerdo -->
-    <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg p-6">
-      <h2 class="text-xl font-semibold text-center mb-4">Olho Esquerdo</h2>
-      <p class="text-gray-700"><strong>Entrada:</strong> <%= @olho_esquerdo.presence || (@pl_esquerdo ? "PL" : @npl_esquerdo ? "NPL" : @indeterminado_esquerdo ? "Indeterminado" : "-") %></p>
-      <p class="text-gray-700"><strong>Categoria:</strong> <%= @categoria_esquerdo %></p>
-      <p class="text-gray-700"><strong>CID:</strong> <%= @cid_esquerdo %></p>
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-header text-center bg-primary text-white">
+          <h2>Olho Esquerdo</h2>
+        </div>
+        <div class="card-body">
+          <p class="mb-3"><strong>Entrada:</strong> <%= @olho_esquerdo.presence || (@pl_esquerdo ? "PL" : @npl_esquerdo ? "NPL" : @indeterminado_esquerdo ? "Indeterminado" : "-") %></p>
+          <p class="mb-3"><strong>Categoria:</strong> <%= @categoria_esquerdo %></p>
+          <p class="mb-0"><strong>CID:</strong> <%= @cid_esquerdo %></p>
+        </div>
+      </div>
     </div>
 
     <!-- Resultado Olho Direito -->
-    <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg p-6">
-      <h2 class="text-xl font-semibold text-center mb-4">Olho Direito</h2>
-      <p class="text-gray-700"><strong>Entrada:</strong> <%= @olho_direito.presence || (@pl_direito ? "PL" : @npl_direito ? "NPL" : @indeterminado_direito ? "Indeterminado" : "-") %></p>
-      <p class="text-gray-700"><strong>Categoria:</strong> <%= @categoria_direito %></p>
-      <p class="text-gray-700"><strong>CID:</strong> <%= @cid_direito %></p>
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-header text-center bg-primary text-white">
+          <h2>Olho Direito</h2>
+        </div>
+        <div class="card-body">
+          <p class="mb-3"><strong>Entrada:</strong> <%= @olho_direito.presence || (@pl_direito ? "PL" : @npl_direito ? "NPL" : @indeterminado_direito ? "Indeterminado" : "-") %></p>
+          <p class="mb-3"><strong>Categoria:</strong> <%= @categoria_direito %></p>
+          <p class="mb-0"><strong>CID:</strong> <%= @cid_direito %></p>
+        </div>
+      </div>
     </div>
+
   </div>
 
   <!-- Diagnóstico Final -->
-  <div class="bg-gray-100 shadow-md rounded-lg p-6 text-center mt-6">
-    <p class="text-lg font-semibold"><strong>Diagnóstico Final:</strong> <%= @descricao_cid %></p>
+  <div class="card shadow-lg text-center mt-5">
+    <div class="card-body bg-light">
+      <p class="h5 font-weight-bold"><strong>Diagnóstico Final:</strong> <%= @descricao_cid %></p>
+    </div>
   </div>
 
-  <div class="flex justify-center mt-4">
-    <%= link_to "Voltar", root_path, class: "bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-200" %>
+  <!-- Botão Voltar -->
+  <div class="text-center mt-4">
+    <%= link_to "Voltar", root_path, class: "btn btn-primary btn-lg px-5 py-2" %>
   </div>
 </div>
