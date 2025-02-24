@@ -1,11 +1,11 @@
-<h1 class="text-center display-4 my-5 font-weight-bold">Avaliação da Acuidade Visual</h1>
+<h1 class="text-center text-4xl font-extrabold text-blue-700 my-10">Avaliação da Acuidade Visual</h1>
 
 <div class="container">
   <%= form_with url: calcular_path, method: :post, class: "row g-4" do %>
 
     <!-- Coluna Olho Esquerdo -->
     <div class="col-md-6">
-      <div class="card shadow-lg">
+      <div class="card shadow-lg border border-primary">
         <div class="card-header text-center bg-primary text-white">
           <h2>Olho Esquerdo</h2>
         </div>
@@ -26,6 +26,16 @@
           </div>
 
           <div class="form-check">
+            <%= check_box_tag :conta_dedos_esquerdo, "Conta dedos", false, class: "form-check-input" %>
+            <%= label_tag :conta_dedos_esquerdo, "Conta dedos", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
+            <%= check_box_tag :vultos_esquerdo, "Vultos", false, class: "form-check-input" %>
+            <%= label_tag :vultos_esquerdo, "Vultos / movimento de mãos", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
             <%= check_box_tag :indeterminado_esquerdo, "Indeterminado", false, class: "form-check-input" %>
             <%= label_tag :indeterminado_esquerdo, "Indeterminado/Não especificado", class: "form-check-label" %>
           </div>
@@ -35,7 +45,7 @@
 
     <!-- Coluna Olho Direito -->
     <div class="col-md-6">
-      <div class="card shadow-lg">
+      <div class="card shadow-lg border border-primary">
         <div class="card-header text-center bg-primary text-white">
           <h2>Olho Direito</h2>
         </div>
@@ -56,6 +66,16 @@
           </div>
 
           <div class="form-check">
+            <%= check_box_tag :conta_dedos_direito, "Conta dedos", false, class: "form-check-input" %>
+            <%= label_tag :conta_dedos_direito, "Conta dedos", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
+            <%= check_box_tag :vultos_direito, "Vultos", false, class: "form-check-input" %>
+            <%= label_tag :vultos_direito, "Vultos / movimento de mãos", class: "form-check-label" %>
+          </div>
+
+          <div class="form-check">
             <%= check_box_tag :indeterminado_direito, "Indeterminado", false, class: "form-check-input" %>
             <%= label_tag :indeterminado_direito, "Indeterminado/Não especificado", class: "form-check-label" %>
           </div>
@@ -64,9 +84,9 @@
     </div>
 
     <!-- Botão Calcular -->
-    <div class="col-12 text-center my-4">
-      <%= submit_tag "Calcular", class: "btn btn-primary btn-lg px-5 py-2" %>
+    <div class="col-12 text-center my-5">
+      <%= submit_tag "Calcular", class: "btn btn-primary btn-lg px-5 py-3" %>
     </div>
-    
+
   <% end %>
 </div>

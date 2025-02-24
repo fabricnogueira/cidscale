@@ -6,16 +6,22 @@ class PrincipalController < ApplicationController
     @olho_esquerdo = params[:olho_esquerdo]
     @olho_direito = params[:olho_direito]
 
+    # Variáveis para o olho esquerdo
     @pl_esquerdo = params[:pl_esquerdo].present?
     @npl_esquerdo = params[:npl_esquerdo].present?
     @indeterminado_esquerdo = params[:indeterminado_esquerdo].present?
+    @conta_dedos_esquerdo = params[:conta_dedos_esquerdo].present?
+    @vultos_esquerdo = params[:vultos_esquerdo].present?
 
+    # Variáveis para o olho direito
     @pl_direito = params[:pl_direito].present?
     @npl_direito = params[:npl_direito].present?
     @indeterminado_direito = params[:indeterminado_direito].present?
+    @conta_dedos_direito = params[:conta_dedos_direito].present?
+    @vultos_direito = params[:vultos_direito].present?
 
-    @categoria_esquerdo, @cid_esquerdo = categorizar_visao(@olho_esquerdo, @pl_esquerdo, @npl_esquerdo, @indeterminado_esquerdo)
-    @categoria_direito, @cid_direito = categorizar_visao(@olho_direito, @pl_direito, @npl_direito, @indeterminado_direito)
+    @categoria_esquerdo, @cid_esquerdo = categorizar_visao(@olho_esquerdo, @pl_esquerdo, @npl_esquerdo, @indeterminado_esquerdo, @conta_dedos_esquerdo, @vultos_esquerdo)
+    @categoria_direito, @cid_direito = categorizar_visao(@olho_direito, @pl_direito, @npl_direito, @indeterminado_direito, @conta_dedos_direito, @vultos_direito)
 
     @descricao_cid = determinar_cid(@cid_esquerdo, @cid_direito)
 
@@ -24,9 +30,11 @@ class PrincipalController < ApplicationController
 
   private
 
-  def categorizar_visao(denominador, pl, npl, indeterminado)
+  def categorizar_visao(denominador, pl, npl, indeterminado, conta_dedos, vultos)
     return ["Categoria 5 - Cegueira (PL)", "H54.0"] if pl
     return ["Categoria 5 - Cegueira (NPL)", "H54.0"] if npl
+    return ["Categoria 5 - Cegueira (Conta dedos)", "H54.0"] if conta_dedos
+    return ["Categoria 5 - Cegueira (Vultos / movimento de mãos)", "H54.0"] if vultos
     return ["Categoria 9 - Indeterminado", "H54.7"] if indeterminado
 
     numerador = 20.0

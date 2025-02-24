@@ -10,7 +10,15 @@
           <h2>Olho Esquerdo</h2>
         </div>
         <div class="card-body">
-          <p class="mb-3"><strong>Entrada:</strong> <%= @olho_esquerdo.presence || (@pl_esquerdo ? "PL" : @npl_esquerdo ? "NPL" : @indeterminado_esquerdo ? "Indeterminado" : "-") %></p>
+          <p class="mb-3">
+            <strong>Entrada:</strong>
+            <%= @olho_esquerdo.presence ||
+                (@pl_esquerdo ? "PL" :
+                @npl_esquerdo ? "NPL" :
+                @conta_dedos_esquerdo ? "Conta dedos" :
+                @vultos_esquerdo ? "Vultos / movimento de mãos" :
+                @indeterminado_esquerdo ? "Indeterminado" : "-") %>
+          </p>
           <p class="mb-3"><strong>Categoria:</strong> <%= @categoria_esquerdo %></p>
           <p class="mb-0"><strong>CID:</strong> <%= @cid_esquerdo %></p>
         </div>
@@ -24,7 +32,15 @@
           <h2>Olho Direito</h2>
         </div>
         <div class="card-body">
-          <p class="mb-3"><strong>Entrada:</strong> <%= @olho_direito.presence || (@pl_direito ? "PL" : @npl_direito ? "NPL" : @indeterminado_direito ? "Indeterminado" : "-") %></p>
+          <p class="mb-3">
+            <strong>Entrada:</strong>
+            <%= @olho_direito.presence ||
+                (@pl_direito ? "PL" :
+                @npl_direito ? "NPL" :
+                @conta_dedos_direito ? "Conta dedos" :
+                @vultos_direito ? "Vultos / movimento de mãos" :
+                @indeterminado_direito ? "Indeterminado" : "-") %>
+          </p>
           <p class="mb-3"><strong>Categoria:</strong> <%= @categoria_direito %></p>
           <p class="mb-0"><strong>CID:</strong> <%= @cid_direito %></p>
         </div>
