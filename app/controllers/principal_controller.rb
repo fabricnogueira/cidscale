@@ -50,10 +50,8 @@ class PrincipalController < ApplicationController
       ["Categoria 2 - Deficiência visual moderada", "H54.2"]
     elsif fracao >= (20.0 / 400)
       ["Categoria 3 - Deficiência visual grave", "H54.1"]
-    elsif denominador.to_f > 400
-      ["Categoria 4 - Cegueira", "H54.0"]
     else
-      ["Categoria 5 - Cegueira", "H54.0"]
+      ["Categoria 4 - Cegueira", "H54.0"]
     end
   end
 
