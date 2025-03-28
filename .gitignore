@@ -39,7 +39,8 @@
 yarn-debug.log*
 .yarn-integrity
 .env
+.md
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
-2025_02_19_17_58_33.md
+
