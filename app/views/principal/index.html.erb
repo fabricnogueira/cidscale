@@ -1,7 +1,7 @@
 <h1 class="text-center text-4xl font-extrabold text-blue-700 my-10">Avaliação da Acuidade Visual</h1>
 
 <div class="container">
-  <%= form_with url: calcular_path, method: :post, class: "row g-4" do %>
+  <%= form_with url: calcular_path, method: :post, class: "row g-4", id: "visual-acuity-form" do %>
 
     <!-- Coluna Olho Esquerdo -->
     <div class="col-md-6">
@@ -14,29 +14,33 @@
             <%= label_tag :olho_esquerdo, "Acuidade Visual (20 /)", class: "form-label" %>
             <%= text_field_tag :olho_esquerdo, "", placeholder: "Ex: 60, 200, 400", class: "form-control w-50" %>
           </div>
+          
+          <div class="alert alert-danger d-none" id="error-left-eye">
+            Selecione apenas uma opção ou informe a acuidade visual para o olho esquerdo
+          </div>
 
           <div class="form-check">
-            <%= check_box_tag :pl_esquerdo, "PL", false, class: "form-check-input" %>
+            <%= check_box_tag :pl_esquerdo, "PL", false, class: "form-check-input left-eye-checkbox" %>
             <%= label_tag :pl_esquerdo, "Percepção de Luz", class: "form-check-label" %>
           </div>
 
           <div class="form-check">
-            <%= check_box_tag :npl_esquerdo, "NPL", false, class: "form-check-input" %>
+            <%= check_box_tag :npl_esquerdo, "NPL", false, class: "form-check-input left-eye-checkbox" %>
             <%= label_tag :npl_esquerdo, "Sem Percepção de Luz", class: "form-check-label" %>
           </div>
 
           <div class="form-check">
-            <%= check_box_tag :conta_dedos_esquerdo, "Conta dedos", false, class: "form-check-input" %>
+            <%= check_box_tag :conta_dedos_esquerdo, "Conta dedos", false, class: "form-check-input left-eye-checkbox" %>
             <%= label_tag :conta_dedos_esquerdo, "Conta dedos", class: "form-check-label" %>
           </div>
 
           <div class="form-check">
-            <%= check_box_tag :vultos_esquerdo, "Vultos", false, class: "form-check-input" %>
+            <%= check_box_tag :vultos_esquerdo, "Vultos", false, class: "form-check-input left-eye-checkbox" %>
             <%= label_tag :vultos_esquerdo, "Vultos / movimento de mãos", class: "form-check-label" %>
           </div>
 
           <div class="form-check">
-            <%= check_box_tag :indeterminado_esquerdo, "Indeterminado", false, class: "form-check-input" %>
+            <%= check_box_tag :indeterminado_esquerdo, "Indeterminado", false, class: "form-check-input left-eye-checkbox" %>
             <%= label_tag :indeterminado_esquerdo, "Indeterminado/Não especificado", class: "form-check-label" %>
           </div>
         </div>
@@ -54,29 +58,33 @@
             <%= label_tag :olho_direito, "Acuidade Visual (20 /)", class: "form-label" %>
             <%= text_field_tag :olho_direito, "", placeholder: "Ex: 60, 200, 400", class: "form-control w-50" %>
           </div>
+          
+          <div class="alert alert-danger d-none" id="error-right-eye">
+            Selecione apenas uma opção ou informe a acuidade visual para o olho direito
+          </div>
 
           <div class="form-check">
-            <%= check_box_tag :pl_direito, "PL", false, class: "form-check-input" %>
+            <%= check_box_tag :pl_direito, "PL", false, class: "form-check-input right-eye-checkbox" %>
             <%= label_tag :pl_direito, "Percepção de Luz", class: "form-check-label" %>
           </div>
 
           <div class="form-check">
-            <%= check_box_tag :npl_direito, "NPL", false, class: "form-check-input" %>
+            <%= check_box_tag :npl_direito, "NPL", false, class: "form-check-input right-eye-checkbox" %>
             <%= label_tag :npl_direito, "Sem Percepção de Luz", class: "form-check-label" %>
           </div>
 
           <div class="form-check">
-            <%= check_box_tag :conta_dedos_direito, "Conta dedos", false, class: "form-check-input" %>
+            <%= check_box_tag :conta_dedos_direito, "Conta dedos", false, class: "form-check-input right-eye-checkbox" %>
             <%= label_tag :conta_dedos_direito, "Conta dedos", class: "form-check-label" %>
           </div>
 
           <div class="form-check">
-            <%= check_box_tag :vultos_direito, "Vultos", false, class: "form-check-input" %>
+            <%= check_box_tag :vultos_direito, "Vultos", false, class: "form-check-input right-eye-checkbox" %>
             <%= label_tag :vultos_direito, "Vultos / movimento de mãos", class: "form-check-label" %>
           </div>
 
           <div class="form-check">
-            <%= check_box_tag :indeterminado_direito, "Indeterminado", false, class: "form-check-input" %>
+            <%= check_box_tag :indeterminado_direito, "Indeterminado", false, class: "form-check-input right-eye-checkbox" %>
             <%= label_tag :indeterminado_direito, "Indeterminado/Não especificado", class: "form-check-label" %>
           </div>
         </div>
@@ -90,3 +98,77 @@
 
   <% end %>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle left eye checkboxes
+    const leftEyeCheckboxes = document.querySelectorAll('.left-eye-checkbox');
+    const leftEyeAcuity = document.getElementById('olho_esquerdo');
+    const errorLeftEye = document.getElementById('error-left-eye');
+    
+    // Handle right eye checkboxes
+    const rightEyeCheckboxes = document.querySelectorAll('.right-eye-checkbox');
+    const rightEyeAcuity = document.getElementById('olho_direito');
+    const errorRightEye = document.getElementById('error-right-eye');
+    
+    // Function to ensure only one checkbox is selected per eye
+    function handleCheckboxChange(checkboxes, field, errorElement) {
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            // Clear the acuity field
+            field.value = '';
+            
+            // Uncheck all other checkboxes
+            checkboxes.forEach(cb => {
+              if (cb !== this) cb.checked = false;
+            });
+          }
+        });
+      });
+      
+      // Clear checkboxes when typing in acuity field
+      field.addEventListener('input', function() {
+        if (this.value) {
+          checkboxes.forEach(cb => cb.checked = false);
+        }
+      });
+    }
+    
+    // Apply handlers to both eyes
+    handleCheckboxChange(leftEyeCheckboxes, leftEyeAcuity, errorLeftEye);
+    handleCheckboxChange(rightEyeCheckboxes, rightEyeAcuity, errorRightEye);
+    
+    // Form submission validation
+    document.getElementById('visual-acuity-form').addEventListener('submit', function(e) {
+      let hasErrors = false;
+      
+      // Validate left eye
+      const leftChecked = Array.from(leftEyeCheckboxes).filter(cb => cb.checked).length;
+      const hasLeftAcuity = leftEyeAcuity.value.trim() !== '';
+      
+      if ((leftChecked > 0 && hasLeftAcuity) || leftChecked > 1) {
+        errorLeftEye.classList.remove('d-none');
+        hasErrors = true;
+      } else {
+        errorLeftEye.classList.add('d-none');
+      }
+      
+      // Validate right eye
+      const rightChecked = Array.from(rightEyeCheckboxes).filter(cb => cb.checked).length;
+      const hasRightAcuity = rightEyeAcuity.value.trim() !== '';
+      
+      if ((rightChecked > 0 && hasRightAcuity) || rightChecked > 1) {
+        errorRightEye.classList.remove('d-none');
+        hasErrors = true;
+      } else {
+        errorRightEye.classList.add('d-none');
+      }
+      
+      // Prevent form submission if there are errors
+      if (hasErrors) {
+        e.preventDefault();
+      }
+    });
+  });
+</script>
