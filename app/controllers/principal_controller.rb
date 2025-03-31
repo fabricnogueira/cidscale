@@ -19,6 +19,21 @@ class PrincipalController < ApplicationController
     @indeterminado_direito = params[:indeterminado_direito].present?
     @conta_dedos_direito = params[:conta_dedos_direito].present?
     @vultos_direito = params[:vultos_direito].present?
+    
+    # Verificar se há múltiplas seleções para o olho esquerdo
+    left_eye_selections = [@pl_esquerdo, @npl_esquerdo, @indeterminado_esquerdo, @conta_dedos_esquerdo, @vultos_esquerdo].count(true)
+    has_left_acuity = @olho_esquerdo.present?
+    
+    # Verificar se há múltiplas seleções para o olho direito
+    right_eye_selections = [@pl_direito, @npl_direito, @indeterminado_direito, @conta_dedos_direito, @vultos_direito].count(true)
+    has_right_acuity = @olho_direito.present?
+    
+    # Se houver múltiplas seleções ou seleção com valor numérico, retornar erro
+    if (left_eye_selections > 1 || (left_eye_selections >= 1 && has_left_acuity)) || 
+       (right_eye_selections > 1 || (right_eye_selections >= 1 && has_right_acuity))
+      flash[:error] = "Por favor, selecione apenas uma opção ou informe a acuidade visual para cada olho."
+      return redirect_to root_path
+    end
 
     @categoria_esquerdo, @cid_esquerdo = categorizar_visao(@olho_esquerdo, @pl_esquerdo, @npl_esquerdo, @indeterminado_esquerdo, @conta_dedos_esquerdo, @vultos_esquerdo)
     @categoria_direito, @cid_direito = categorizar_visao(@olho_direito, @pl_direito, @npl_direito, @indeterminado_direito, @conta_dedos_direito, @vultos_direito)
