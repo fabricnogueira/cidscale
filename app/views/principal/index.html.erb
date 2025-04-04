@@ -1,51 +1,7 @@
 <h1 class="text-center text-4xl font-extrabold text-blue-700 my-10">Avaliação da Acuidade Visual</h1>
 
-<div class="container">
+<div class="container d-flex justify-content-center gap-3">
   <%= form_with url: calcular_path, method: :post, class: "row g-4", id: "visual-acuity-form" do %>
-
-    <!-- Coluna Olho Esquerdo -->
-    <div class="col-md-6">
-      <div class="card shadow-lg border border-primary">
-        <div class="card-header text-center bg-primary text-white">
-          <h2>Olho Esquerdo</h2>
-        </div>
-        <div class="card-body">
-          <div class="mb-3">
-            <%= label_tag :olho_esquerdo, "Acuidade Visual (20 /)", class: "form-label" %>
-            <%= text_field_tag :olho_esquerdo, "", placeholder: "Ex: 60, 200, 400", class: "form-control w-50" %>
-          </div>
-          
-          <div class="alert alert-danger d-none" id="error-left-eye">
-            Selecione apenas uma opção ou informe a acuidade visual para o olho esquerdo
-          </div>
-
-          <div class="form-check">
-            <%= check_box_tag :pl_esquerdo, "PL", false, class: "form-check-input left-eye-checkbox" %>
-            <%= label_tag :pl_esquerdo, "Percepção de Luz", class: "form-check-label" %>
-          </div>
-
-          <div class="form-check">
-            <%= check_box_tag :npl_esquerdo, "NPL", false, class: "form-check-input left-eye-checkbox" %>
-            <%= label_tag :npl_esquerdo, "Sem Percepção de Luz", class: "form-check-label" %>
-          </div>
-
-          <div class="form-check">
-            <%= check_box_tag :conta_dedos_esquerdo, "Conta dedos", false, class: "form-check-input left-eye-checkbox" %>
-            <%= label_tag :conta_dedos_esquerdo, "Conta dedos", class: "form-check-label" %>
-          </div>
-
-          <div class="form-check">
-            <%= check_box_tag :vultos_esquerdo, "Vultos", false, class: "form-check-input left-eye-checkbox" %>
-            <%= label_tag :vultos_esquerdo, "Vultos / movimento de mãos", class: "form-check-label" %>
-          </div>
-
-          <div class="form-check">
-            <%= check_box_tag :indeterminado_esquerdo, "Indeterminado", false, class: "form-check-input left-eye-checkbox" %>
-            <%= label_tag :indeterminado_esquerdo, "Indeterminado/Não especificado", class: "form-check-label" %>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Coluna Olho Direito -->
     <div class="col-md-6">
@@ -53,39 +9,75 @@
         <div class="card-header text-center bg-primary text-white">
           <h2>Olho Direito</h2>
         </div>
-        <div class="card-body">
-          <div class="mb-3">
+        <div class="card-body d-flex flex-column align-items-center text-center">
+          <div class="mb-3 w-30">
             <%= label_tag :olho_direito, "Acuidade Visual (20 /)", class: "form-label" %>
-            <%= text_field_tag :olho_direito, "", placeholder: "Ex: 60, 200, 400", class: "form-control w-50" %>
+            <%= text_field_tag :olho_direito, "", placeholder: "Ex: 60, 200, 400", class: "form-control w-100" %>
           </div>
           
-          <div class="alert alert-danger d-none" id="error-right-eye">
+          <div class="alert alert-danger d-none w-75 ms-auto text-start" id="error-right-eye">
             Selecione apenas uma opção ou informe a acuidade visual para o olho direito
           </div>
 
-          <div class="form-check">
-            <%= check_box_tag :pl_direito, "PL", false, class: "form-check-input right-eye-checkbox" %>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :pl_direito, "PL", false, class: "form-check-input me-2" %>
             <%= label_tag :pl_direito, "Percepção de Luz", class: "form-check-label" %>
           </div>
-
-          <div class="form-check">
-            <%= check_box_tag :npl_direito, "NPL", false, class: "form-check-input right-eye-checkbox" %>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :npl_direito, "NPL", false, class: "form-check-input me-2" %>
             <%= label_tag :npl_direito, "Sem Percepção de Luz", class: "form-check-label" %>
           </div>
-
-          <div class="form-check">
-            <%= check_box_tag :conta_dedos_direito, "Conta dedos", false, class: "form-check-input right-eye-checkbox" %>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :conta_dedos_direito, "Conta dedos", false, class: "form-check-input me-2" %>
             <%= label_tag :conta_dedos_direito, "Conta dedos", class: "form-check-label" %>
           </div>
-
-          <div class="form-check">
-            <%= check_box_tag :vultos_direito, "Vultos", false, class: "form-check-input right-eye-checkbox" %>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :vultos_direito, "Vultos", false, class: "form-check-input me-2" %>
             <%= label_tag :vultos_direito, "Vultos / movimento de mãos", class: "form-check-label" %>
           </div>
-
-          <div class="form-check">
-            <%= check_box_tag :indeterminado_direito, "Indeterminado", false, class: "form-check-input right-eye-checkbox" %>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :indeterminado_direito, "Indeterminado", false, class: "form-check-input me-2" %>
             <%= label_tag :indeterminado_direito, "Indeterminado/Não especificado", class: "form-check-label" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coluna Olho Esquerdo -->
+    <div class="col-md-6">
+      <div class="card shadow-lg border border-primary">
+        <div class="card-header text-center bg-primary text-white">
+          <h2>Olho Esquerdo</h2>
+        </div>
+        <div class="card-body d-flex flex-column align-items-center text-center">
+          <div class="mb-3 w-30">
+            <%= label_tag :olho_esquerdo, "Acuidade Visual (20 /)", class: "form-label" %>
+            <%= text_field_tag :olho_esquerdo, "", placeholder: "Ex: 60, 200, 400", class: "form-control w-100" %>
+          </div>
+          
+          <div class="alert alert-danger d-none w-75 ms-auto text-start" id="error-left-eye">
+            Selecione apenas uma opção ou informe a acuidade visual para o olho esquerdo
+          </div>
+
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :pl_esquerdo, "PL", false, class: "form-check-input me-2" %>
+            <%= label_tag :pl_esquerdo, "Percepção de Luz", class: "form-check-label" %>
+          </div>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :npl_esquerdo, "NPL", false, class: "form-check-input me-2" %>
+            <%= label_tag :npl_esquerdo, "Sem Percepção de Luz", class: "form-check-label" %>
+          </div>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :conta_dedos_esquerdo, "Conta dedos", false, class: "form-check-input me-2" %>
+            <%= label_tag :conta_dedos_esquerdo, "Conta dedos", class: "form-check-label" %>
+          </div>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :vultos_esquerdo, "Vultos", false, class: "form-check-input me-2" %>
+            <%= label_tag :vultos_esquerdo, "Vultos / movimento de mãos", class: "form-check-label" %>
+          </div>
+          <div class="form-check d-flex align-items-center mb-2 w-75 ms-auto text-start">
+            <%= check_box_tag :indeterminado_esquerdo, "Indeterminado", false, class: "form-check-input me-2" %>
+            <%= label_tag :indeterminado_esquerdo, "Indeterminado/Não especificado", class: "form-check-label" %>
           </div>
         </div>
       </div>
