@@ -52,21 +52,23 @@ class PrincipalController < ApplicationController
     return ["Categoria 5 - Cegueira (Vultos / movimento de mãos)", "H54.0"] if vultos
     return ["Categoria 9 - Indeterminado", "H54.7"] if indeterminado
 
-    numerador = 20.0
-    return ["Valor inválido", "N/A"] if denominador.blank? || denominador.to_f == 0
+    return ["Valor inválido", "N/A"] if denominador.blank?
 
-    fracao = numerador / denominador.to_f
+    d = denominador.to_f
+    return ["Valor inválido", "N/A"] if d.zero?
 
-    if fracao >= (20.0 / 40)
+    if d <= 40
       ["Categoria 0 - Sem deficiência visual", "N/A"]
-    elsif fracao >= (20.0 / 70)
+    elsif d <= 70
       ["Categoria 1 - Deficiência visual leve", "H54.2"]
-    elsif fracao >= (20.0 / 200)
+    elsif d <= 200
       ["Categoria 2 - Deficiência visual moderada", "H54.2"]
-    elsif fracao >= (20.0 / 400)
+    elsif d <= 400
       ["Categoria 3 - Deficiência visual grave", "H54.1"]
-    else
+    elsif d <= 1200
       ["Categoria 4 - Cegueira", "H54.0"]
+    else
+      ["Categoria 5 - Cegueira", "H54.0"]
     end
   end
 
